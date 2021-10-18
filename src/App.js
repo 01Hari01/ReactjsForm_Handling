@@ -1,12 +1,12 @@
 import './App.css';
 import {BrowserRouter as Router,Route} from "react-router-dom";
-import formsExercise from "./components/formsExercise";
-import PSBar from "./components/proSidebar";
+import Sidebar_Submenu from "./sidebarExamples/Sidebar_Submenu";
 function App() {
   return (
     <div className="App">
         <Router>
-            <Route exact='/' path='' component={PSBar}/>
+            <Route path='/forms' component={Sidebar_Submenu}/>
+
         </Router>
 
     </div>

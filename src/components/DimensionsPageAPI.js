@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-class formsExercise extends Component{
+class DimensionsPageAPI extends Component{
     constructor() {
         super();
         this.state={
@@ -15,23 +15,27 @@ class formsExercise extends Component{
     }
     changeHandler(event){
         this.setState({[event.target.name]:event.target.value});
+        console.log('This is at the change handler');
+        console.log(this.state)
     }
+
     submitForm=event=>{
         event.preventDefault();
+        console.log(this.state)
         fetch('http://127.0.0.1:8000/stator/',{
             method:'POST',
             body:JSON.stringify({
                 coreLength:this.state.coreLength,
-                innerDiameter:this.state.innerDiameter,
+                InnerDiameter:this.state.innerDiameter,
                 outerDiameter:this.state.outerDiameter,
                 packingFactor:this.state.packingFactor,
                 slots:this.state.slots,
                 material:this.state.material
             }),
             headers:{
-                'Content-type':'application/json; charset=UTF-8',
+                'Content-type':'application/json;',
             },
-        credentials:'include'
+        // credentials:'include'
         })
             .then(response=>response.json())
             .then((data)=>console.log(data));
@@ -43,6 +47,7 @@ class formsExercise extends Component{
             slots:'',
             material:''
         });
+
     }
     // eslint-disable-next-line react/require-render-return
     render(){
@@ -51,27 +56,28 @@ class formsExercise extends Component{
                 <tbody>
                 <tr>
                     <th>coreLength</th>
-                    <td><input defaultValue={this.state.coreLength} name='coreLength' type='number'/></td>
+                    <td><input defaultValue={this.state.coreLength} onChange={this.changeHandler} name='coreLength' className='form-control' type='number'/></td>
                 </tr>
+
                 <tr>
                     <th>inner Diameter</th>
-                    <td><input defaultValue={this.state.innerDiameter} name='innerDiameter' type='number' className='form-control'/></td>
+                    <td><input defaultValue={this.state.innerDiameter} onChange={this.changeHandler} name='innerDiameter' type='number' className='form-control'/></td>
                 </tr>
                 <tr>
                     <th>Outer Diameter</th>
-                    <td><input defaultValue={this.state.outerDiameter} name='outerDiameter' type='number' className='form-control'/></td>
+                    <td><input defaultValue={this.state.outerDiameter} onChange={this.changeHandler} name='outerDiameter' type='number' className='form-control'/></td>
                 </tr>
                 <tr>
                     <th>packing Factor</th>
-                    <td><input defaultValue={this.state.packingFactor} name='packingFactor' type='number' className='form-control'/></td>
+                    <td><input defaultValue={this.state.packingFactor} onChange={this.changeHandler} name='packingFactor' type='number' className='form-control'/></td>
                 </tr>
                 <tr>
                     <th>slots</th>
-                    <td><input defaultValue={this.state.slots} name='slots' type='number' className='form-control'/></td>
+                    <td><input defaultValue={this.state.slots} onChange={this.changeHandler} name='slots' type='number' className='form-control'/></td>
                 </tr>
                 <tr>
                     <th>material</th>
-                    <td><input defaultValue={this.state.material} name='material' type='text' className='form-control'/></td>
+                    <td><input defaultValue={this.state.material} onChange={this.changeHandler} name='material' type='text' className='form-control'/></td>
                 </tr>
                 <tr>
                     <td colSpan='2'>
@@ -84,4 +90,4 @@ class formsExercise extends Component{
         );
     }
 }
-export default formsExercise;
+export default DimensionsPageAPI;
