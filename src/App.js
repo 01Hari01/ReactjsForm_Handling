@@ -1,11 +1,11 @@
 import './App.css';
 import {BrowserRouter as Router,Route} from "react-router-dom";
-import Sidebar_Submenu from "./sidebarExamples/Sidebar_Submenu";
+import StatorAPI from "./API/StatorAPI";
 function App() {
   return (
     <div className="App">
         <Router>
-            <Route path='/forms' component={Sidebar_Submenu}/>
+            <Route path='/forms' component={StatorAPI}/>
 
         </Router>
 

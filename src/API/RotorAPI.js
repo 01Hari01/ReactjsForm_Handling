@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-class DimensionsPageAPI extends Component{
+class RotorAPI extends Component{
     constructor() {
         super();
         this.state={
@@ -18,8 +18,21 @@ class DimensionsPageAPI extends Component{
         console.log('This is at the change handler');
         console.log(this.state)
     }
+    submitForm_holes=event=>{
+        event.preventDefault();
+        console.log(this.state)
+        fetch('http://127.0.0.1:8000/slot/',{
+            method:'POST',
+            body:JSON.stringify({
+                slot:this.state.slot
 
-    submitForm=event=>{
+
+            })
+
+        })
+    }
+
+    submitForm_slot=event=>{
         event.preventDefault();
         console.log(this.state)
         fetch('http://127.0.0.1:8000/stator/',{
@@ -35,7 +48,7 @@ class DimensionsPageAPI extends Component{
             headers:{
                 'Content-type':'application/json;',
             },
-        // credentials:'include'
+            // credentials:'include'
         })
             .then(response=>response.json())
             .then((data)=>console.log(data));
@@ -81,7 +94,7 @@ class DimensionsPageAPI extends Component{
                 </tr>
                 <tr>
                     <td colSpan='2'>
-                        <input type='submit' onClick={this.submitForm} className='btn btn-dark'/>
+                        <input type='submit' onClick={this.submitForm_slot} className='btn btn-dark'/>
                     </td>
                 </tr>
                 </tbody>
@@ -90,4 +103,4 @@ class DimensionsPageAPI extends Component{
         );
     }
 }
-export default DimensionsPageAPI;
+export default RotorAPI;
