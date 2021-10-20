@@ -19,9 +19,18 @@ class StatorAPI extends Component{
             W1:'',
             W2:''
         }
+        this.state={
+            Conductor_type:'',
+            Nwpcc:'',
+            Whcc:'',
+            wins_wire:'',
+            wins_cond:'',
+            cond_material:''
+        }
         this.changeHandler=this.changeHandler.bind(this);
         this.submitForm_Slot=this.submitForm_Slot.bind(this);
         this.submitForm_stator=this.submitForm_stator.bind(this);
+        this.submitForm_Conductor=this.submitForm_Conductor.bind(this);
     }
     changeHandler(event){
         this.setState({[event.target.name]:event.target.value});
@@ -45,7 +54,7 @@ class StatorAPI extends Component{
             headers:{
                 'Content-type':'application/json;',
             },
-            credentials:'include'
+            // credentials:'include'
             })
             .then(respose=>respose.json())
             .then((data)=>console.log(data));
@@ -58,6 +67,36 @@ class StatorAPI extends Component{
             W1:'',
             W2:''
         });
+
+    }
+    submitForm_Conductor=event=>{
+        event.preventDefault();
+        console.log(this.state)
+        fetch('http://127.0.0.1:8000/conductor/',{
+            method:'POST',
+            body:JSON.stringify({
+                Conductor_type:this.state.Conductor_type,
+                Nwpcc:this.state.Nwpcc,
+                Whcc:this.state.Whcc,
+                Wins_wire:this.state.Wins_wire,
+                Wins_cond:this.state.Wins_cond,
+                Cond_material:this.state.Cond_material
+            }),
+            headers:{
+                'Content-type':'application/json;',
+            },
+            // credentials:'include'
+        })
+            .then(response=>response.json())
+            .then((data)=>console.log(data));
+        this.setState({
+            Conductor_type:'',
+            Nwpcc:'',
+            Whcc:'',
+            Wins_cond:'',
+            Cond_material:''
+        });
+
 
     }
 
@@ -97,7 +136,7 @@ class StatorAPI extends Component{
         return(
             <>
             <div>
-                <h1>This is for slot form submission</h1>
+                <h1>This is for Stator forms submission</h1>
                 <table className='table-table-bordered'>
                     <tbody>
                     <tr>
@@ -175,6 +214,43 @@ class StatorAPI extends Component{
                 </tbody>
 
             </table>
+            <div>
+            <table className='table-table-bordered'>
+                <tbody>
+                <tr>
+                    <th>Conductor Type</th>
+                    <td><input defaultValue={this.state.Conductor_type} onChange={this.changeHandler} name='Conductor_type' className='form-control' type='text'/></td>
+                </tr>
+
+                <tr>
+                    <th>Nwpcc</th>
+                    <td><input defaultValue={this.state.Nwpcc} onChange={this.changeHandler} name='Nwpcc' type='number' className='form-control'/></td>
+                </tr>
+                <tr>
+                    <th>Whcc</th>
+                    <td><input defaultValue={this.state.Whcc} onChange={this.changeHandler} name='Whcc' type='number' className='form-control'/></td>
+                </tr>
+                <tr>
+                    <th>Wins Wire</th>
+                    <td><input defaultValue={this.state.Wins_wire} onChange={this.changeHandler} name='Wins wire' type='number' className='form-control'/></td>
+                </tr>
+                <tr>
+                    <th>Wins Cond</th>
+                    <td><input defaultValue={this.state.Wins_cond} onChange={this.changeHandler} name='W0' type='number' className='form-control'/></td>
+                </tr>
+                <tr>
+                    <th>Cond Material</th>
+                    <td><input defaultValue={this.state.Cond_material} onChange={this.changeHandler} name='W1' type='text' className='form-control'/></td>
+                </tr>
+                <tr>
+                    <td colSpan='2'>
+                        <input type='submit' onClick={this.submitForm_Conductor} className='btn btn-dark'/>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+            </div>
             </>
         );
     }

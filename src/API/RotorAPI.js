@@ -21,7 +21,7 @@ class RotorAPI extends Component{
     submitForm_holes=event=>{
         event.preventDefault();
         console.log(this.state)
-        fetch('http://127.0.0.1:8000/slot/',{
+        fetch('http://127.0.0.1:8000/holes/',{
             method:'POST',
             body:JSON.stringify({
                 slot:this.state.slot
@@ -35,7 +35,7 @@ class RotorAPI extends Component{
     submitForm_slot=event=>{
         event.preventDefault();
         console.log(this.state)
-        fetch('http://127.0.0.1:8000/stator/',{
+        fetch('http://127.0.0.1:8000/slot/',{
             method:'POST',
             body:JSON.stringify({
                 coreLength:this.state.coreLength,
