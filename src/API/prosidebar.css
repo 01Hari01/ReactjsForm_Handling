@@ -1,0 +1,14 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+.sidenav {
+    float:left;
+    width:20%;
+    height: 100vh;
+    background:darkslategray;
+    overflow-x: hidden;
+    padding-top: 60px;
+}

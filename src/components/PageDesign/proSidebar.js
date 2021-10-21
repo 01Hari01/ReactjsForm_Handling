@@ -5,11 +5,11 @@ import Icon from "react-suite/build/components/ui/Icon";
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from  'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
-import ''
+import React from "react";
 import {FaGem, FaHeart} from "react-icons/fa";
 
 function PSBar(){
-    const [navbarOpen,setNavbarOpen]=useState(true)
+    const [navbarOpen,setNavbarOpen]=useState(true);
     return(
         <div>
         <ProSidebar>
